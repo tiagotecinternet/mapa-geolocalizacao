@@ -7,7 +7,7 @@
 Programe recursos que permitam colocar o `Marker` no local em que o usuário tocar no `MapView`.
 
 **Dicas: **
-- Você precisará trabalhar com `state` para registrar a localização, além de evento `onPress` e função.
+- Você precisará trabalhar com `state` para registrar a localização, além de evento `onPress` **(no MapView)** e função.
 - Lembre-se que para acessar dados da localização, você pode utilizar as informações do `event.nativeEvent`
 
 ---
