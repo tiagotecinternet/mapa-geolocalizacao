@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, StatusBar } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, Image } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 
 export default function App() {
@@ -33,12 +33,10 @@ export default function App() {
             draggable
             coordinate={localizacao} 
             title="Aqui!!!"
-            onPress={
-              (event)=>{
-                console.log(event.nativeEvent);
-              }
-            }
-          />
+            onPress={(event)=>console.log(event.NativeEvent)}
+          >
+            {/* <Image source={require('./assets/ghost.png')} /> */}
+          </Marker>
         </MapView>
       </View>
     </>
