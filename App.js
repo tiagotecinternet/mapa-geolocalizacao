@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { StyleSheet, Text, View, StatusBar, Image } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 
@@ -11,12 +12,13 @@ export default function App() {
     longitudeDelta: 10
   }
 
-  const localizacao = {
+  /* Usando state para controlar a localização */
+  const [localizacao, setLocalizacao] = useState({
     latitude: -33.867886,
     longitude:  -63.987,
     latitudeDelta: 10,
     longitudeDelta: 10
-  }
+  });
 
   return (
     <>
