@@ -1,8 +1,36 @@
-import { useState } from 'react';
-import { StyleSheet, Text, View, StatusBar, Image } from 'react-native';
+import { useEffect, useState } from 'react';
+import { StyleSheet, Text, View, StatusBar, Image, Alert } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
+import * as Location from "expo-location";
 
 export default function App() {
+
+  /* State para a geolocalização */
+  const [minhaLocalizacao, setMinhaLocalizacao] = useState(null);
+
+  useEffect( () => {
+    async function obterLocalizacao(){
+      // Acessando o status da requisição de permissão de uso
+      const { status } = await Location.requestForegroundPermissionsAsync();
+
+      // Verificando o status
+      if( status !== 'granted' ){
+        Alert.alert("Ops!", "Você não autorizou o uso de recursos de localização");
+        return;
+      }
+
+      // Acessando os dados de geolocalização
+      let localizacaoAtual = await Location.getCurrentPositionAsync({});
+      
+      // Adicionando os dados ao state
+      setMinhaLocalizacao(localizacaoAtual);
+    }
+
+    obterLocalizacao();
+  }, [] )
+
+  console.log(minhaLocalizacao);
+
   const regiaoInicial = { // Estado de SP
     latitude: -23.533773,
     longitude: -46.65529,

@@ -1,5 +1,15 @@
 # Referências
 
+## 06-mapview-com-location
+
+**Documentação:** https://docs.expo.dev/versions/latest/sdk/location/
+
+### Instalação:
+
+`npx expo install expo-location`
+
+---
+
 ## 05-outra-solução-para-o-marker
 
 Nesta correção fizemos com que o `Marker` apareça apenas quando o usuário tocar em um local do Mapa, ou seja, condicionamos a exibição do marcador à existência de uma localização.
