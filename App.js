@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, StatusBar, Image } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 
 export default function App() {
-  const regiaoInicial = { // SP
+  const regiaoInicial = { // Estado de SP
     latitude: -23.533773,
     longitude: -46.65529,
     latitudeDelta: 10,
@@ -11,20 +11,15 @@ export default function App() {
   }
 
   /* Usando state para controlar a localização */
-  const [localizacao, setLocalizacao] = useState({
-    latitude: -33.867886,
-    longitude:  -63.987,
-    latitudeDelta: 10,
-    longitudeDelta: 10
-  });
+  const [localizacao, setLocalizacao] = useState();
 
   const marcarLocal = (event) => {
     setLocalizacao({
-      ...localizacao,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
       latitude: event.nativeEvent.coordinate.latitude,
       longitude: event.nativeEvent.coordinate.longitude
     });
-
     console.log(localizacao);
   }
 
@@ -35,15 +30,18 @@ export default function App() {
         <MapView 
           onPress={marcarLocal}
           style={estilos.mapa} 
-          initialRegion={regiaoInicial} 
+          region={localizacao ?? regiaoInicial}
           liteMode={false} 
           mapType="standard"
         >
-          <Marker 
-            coordinate={localizacao} 
-            title="Aqui!!!"
-            onPress={ e => console.log(e.nativeEvent) }
-          />
+          { localizacao &&
+            <Marker 
+              coordinate={localizacao} 
+              title="Aqui!!!"
+              onPress={ e => console.log(e.nativeEvent) }
+            />
+          }
+
         </MapView>
       </View>
     </>
