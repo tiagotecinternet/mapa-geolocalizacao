@@ -12,10 +12,11 @@ export default function App() {
 
   useEffect(()=>{
     async function verificaPermissoes(){
-      const { status } = await Location.requestForegroundPermissionsAsync();
-      requestPermission(status === "granted");
+      const { locationStatus } = await Location.requestForegroundPermissionsAsync();
+      requestPermission(locationStatus === "granted");
       
       let localizacaoAtual = await Location.getCurrentPositionAsync({});
+      console.log("Status: "+status.status);
       setMinhaLocalizacao(localizacaoAtual);
     } 
 
