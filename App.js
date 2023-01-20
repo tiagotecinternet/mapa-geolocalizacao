@@ -13,32 +13,14 @@ export default function App() {
   useEffect(()=>{
     async function verificaPermissoes(){
       const { status } = await Location.requestForegroundPermissionsAsync();
-      requestPermission(cameraStatus === "granted");
+      requestPermission(status === "granted");
+      
+      let localizacaoAtual = await Location.getCurrentPositionAsync({});
+      setMinhaLocalizacao(localizacaoAtual);
     } 
 
     verificaPermissoes();
   }, [])
-
-  useEffect( () => {
-    async function obterLocalizacao(){
-      // Acessando o status da requisição de permissão de uso
-      const { status } = await Location.requestForegroundPermissionsAsync();
-
-      // Verificando o status
-      // if( status !== 'granted' ){
-      //   Alert.alert("Ops!", "Você não autorizou o uso de recursos de localização");
-      //   return;
-      // }
-
-      // Acessando os dados de geolocalização
-      let localizacaoAtual = await Location.getCurrentPositionAsync({});
-      
-      // Adicionando os dados ao state
-      setMinhaLocalizacao(localizacaoAtual);
-    }
-
-    obterLocalizacao();
-  }, [] )
 
   console.log(minhaLocalizacao);
 
