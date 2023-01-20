@@ -8,6 +8,17 @@ export default function App() {
   /* State para a geolocalização */
   const [minhaLocalizacao, setMinhaLocalizacao] = useState(null);
 
+  const [status, requestPermission] = Location.useForegroundPermissions();
+
+  useEffect(()=>{
+    async function verificaPermissoes(){
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      requestPermission(cameraStatus === "granted");
+    } 
+
+    verificaPermissoes();
+  }, [])
+
   useEffect( () => {
     async function obterLocalizacao(){
       // Acessando o status da requisição de permissão de uso
