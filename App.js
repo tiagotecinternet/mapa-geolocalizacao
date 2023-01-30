@@ -14,10 +14,10 @@ export default function App() {
       const { status } = await Location.requestForegroundPermissionsAsync();
 
       // Verificando o status
-      // if( status !== 'granted' ){
-      //   Alert.alert("Ops!", "Você não autorizou o uso de recursos de localização");
-      //   return;
-      // }
+      if( status !== 'granted' ){
+        Alert.alert("Ops!", "Você não autorizou o uso de recursos de localização");
+        return;
+      }
 
       // Acessando os dados de geolocalização
       let localizacaoAtual = await Location.getCurrentPositionAsync({});
